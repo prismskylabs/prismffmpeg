@@ -1,3 +1,9 @@
 [submodule "src"]
 	path = src
 	url = git@github.com:prismskylabs/FFmpeg.git
+[submodule "3rdParty/libx264"]
+	path = 3rdParty/libx264
+	url = git@github.com:prismskylabs/prismlibx264.git
+[submodule "3rdParty/libvpx"]
+	path = 3rdParty/libvpx
+	url = git@github.com:prismskylabs/prismlibvpx.git
