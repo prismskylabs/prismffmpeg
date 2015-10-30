@@ -5,6 +5,21 @@ set(ffmpeg_install_prefix ${ffmpeg_binary_dir}/root)
 set(ffmpeg_pkg_config_path ${ffmpeg_install_prefix}/lib/pkgconfig)
 set(ffmpeg_source_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+# set where to find codecs
+if(WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/win32/include -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/win32/include")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/win32/lib/Win32 -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/win32/lib/Win32")
+elseif(APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/osx/include -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/osx/include")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/osx/lib -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/osx/lib")
+elseif(EMBEDDED)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/isd/include -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/isd/include")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/isd/lib -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/isd/lib")
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/linux/include -I${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/linux/include")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libx264/install/linux/lib -L${CMAKE_CURRENT_SOURCE_DIR}/3rdParty/libvpx/install/linux/lib")
+endif()
+
 if(WIN32)
     set(FFMPEG_LIB_DIR ${ffmpeg_install_prefix}/bin CACHE INTERNAL "")
 else()
@@ -101,6 +116,8 @@ else()
             --enable-vda --disable-iconv --disable-libopencv --enable-libx264 --enable-libvpx
             --enable-gpl --enable-nonfree
             --enable-encoder=libx264,mjpeg,libvpx_vp8,libvpx_vp9
+            --extra-cflags=${CMAKE_CXX_FLAGS}
+            --extra-ldflags=${CMAKE_EXE_LINKER_FLAGS}
             ${FFMPEG_FLAGS}
         WORKING_DIRECTORY ${ffmpeg_binary_dir} RESULT_VARIABLE result2)
     if(result1 OR result2)
