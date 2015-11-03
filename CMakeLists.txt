@@ -76,10 +76,13 @@ if(NOT PRISM_CPP_API)
          --enable-protocol=file,pipe,rtp,tcp,udp,http,https,httpproxy )
 else()
     if (EMBEDDED)
+        MESSAGE(STATUS "OK, we're clearly an embedded platform!!!!!!!!!!!!!!!!!!!!!!!!")
         set(FFMPEG_CROSS --enable-cross-compile
             --cross-prefix=$ENV{ISD_TOP_DIR}/bin/arm-linux-gnueabihf- --arch=arm --target-os=linux
             --extra-ldflags="-L$ENV{ISD_TOP_DIR}/lib" --disable-yasm
             --enable-pic --disable-thumb)
+    else()
+        set(FFMPEG_FLAGS ${FFMPEG_FLAGS} --enable-shared )
     endif()
     set(FFMPEG_FLAGS ${FFMPEG_FLAGS}
          --enable-decoder=h264,mjpeg,mpeg4
@@ -103,10 +106,9 @@ else()
             ${FFMPEG_CROSS}
             --prefix=${ffmpeg_install_prefix}
             ${FFMPEG_DEBUG}
-            --enable-shared
             # Component options (per "configure --help")
             --disable-avdevice --disable-avfilter --disable-doc
-            --disable-postproc --disable-swresample --enable-sdl
+            --disable-postproc --disable-swresample
             --disable-vaapi --disable-vda --disable-vdpau
             --enable-avformat --enable-avcodec --enable-network --enable-swscale
             # Individual component options (per "configure --help")
