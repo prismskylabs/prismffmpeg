@@ -7,3 +7,6 @@
 [submodule "3rdParty/libvpx"]
 	path = 3rdParty/libvpx
 	url = git@github.com:prismskylabs/prismlibvpx.git
+[submodule "3rdParty/pthreads-win32"]
+	path = 3rdParty/pthreads-win32
+	url = git@github.com:prismskylabs/pthreads-win32.git
