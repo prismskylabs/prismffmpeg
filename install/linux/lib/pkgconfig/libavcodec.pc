@@ -1,0 +1,14 @@
+prefix=/home/keith/prismffmpeg/build/ffmpeg/root
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 56.13.100
+Requires: libavutil >= 54.15.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavcodec -lxcb -lxcb-shm -lxcb -lX11 -lx264 -lpthread -lvpx -lvpx -lm -lbz2 -lz -pthread -lrt
+Libs.private: 
+Cflags: -I${includedir}
