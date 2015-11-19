@@ -105,6 +105,7 @@ else()
         COMMAND sh ${ffmpeg_source_dir}/configure
             ${FFMPEG_CROSS}
             --prefix=${ffmpeg_install_prefix}
+            --enable-rpath
             ${FFMPEG_DEBUG}
             # Component options (per "configure --help")
             --disable-avdevice --disable-avfilter --disable-doc
