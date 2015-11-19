@@ -1,4 +1,4 @@
-prefix=/Users/keith/prismffmpeg/build/ffmpeg/root
+prefix=.
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include
@@ -9,6 +9,6 @@ Version: 54.15.100
 Requires: 
 Requires.private: 
 Conflicts:
-Libs: -L${libdir} -Wl,-rpath,${libdir} -lavutil -lm
+Libs: -L${libdir}  -lavutil -lm
 Libs.private: 
 Cflags: -I${includedir}

@@ -1,4 +1,4 @@
-prefix=/Users/keith/prismffmpeg/build/ffmpeg/root
+prefix=.
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include
@@ -9,6 +9,6 @@ Version: 56.13.100
 Requires: libavutil >= 54.15.100
 Requires.private: 
 Conflicts:
-Libs: -L${libdir} -Wl,-rpath,${libdir} -lavcodec -framework CoreFoundation -framework VideoDecodeAcceleration -framework QuartzCore -L/usr/local/lib -lSDLmain -lSDL -Wl,-framework,Cocoa -Wl,-framework,OpenCL -lx264 -lvpx -lvpx -lm -llzma -lbz2 -lz -pthread
+Libs: -L${libdir}  -lavcodec -framework CoreFoundation -framework VideoDecodeAcceleration -framework QuartzCore -L/usr/local/lib -lSDLmain -lSDL -Wl,-framework,Cocoa -Wl,-framework,OpenCL -lx264 -lvpx -lvpx -lm -llzma -lbz2 -lz -pthread
 Libs.private: 
 Cflags: -I${includedir}
