@@ -9,6 +9,6 @@ Version: 54.15.100
 Requires: 
 Requires.private: 
 Conflicts:
-Libs: -L${libdir}  -lavutil 
-Libs.private: -lm
+Libs: -L${libdir} -Wl,-rpath,${libdir} -lavutil -lm
+Libs.private: 
 Cflags: -I${includedir}
