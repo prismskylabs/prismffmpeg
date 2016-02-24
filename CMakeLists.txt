@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.8)
 set(ffmpeg_binary_dir ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg)
-set(ffmpeg_install_prefix ${ffmpeg_binary_dir}/root)
+set(ffmpeg_install_prefix ".")
 # pkg-config (.pc) files will be installed here.
 set(ffmpeg_pkg_config_path ${ffmpeg_install_prefix}/lib/pkgconfig)
 set(ffmpeg_source_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -81,8 +81,6 @@ else()
             --cross-prefix=$ENV{ISD_TOP_DIR}/bin/arm-linux-gnueabihf- --arch=arm --target-os=linux
             --extra-ldflags="-L$ENV{ISD_TOP_DIR}/lib" --disable-yasm
             --enable-pic --disable-thumb)
-    else()
-        set(FFMPEG_FLAGS ${FFMPEG_FLAGS} --enable-shared )
     endif()
     set(FFMPEG_FLAGS ${FFMPEG_FLAGS}
          --enable-decoder=h264,mjpeg,mpeg4
@@ -105,7 +103,6 @@ else()
         COMMAND sh ${ffmpeg_source_dir}/configure
             ${FFMPEG_CROSS}
             --prefix=${ffmpeg_install_prefix}
-            --enable-rpath
             ${FFMPEG_DEBUG}
             # Component options (per "configure --help")
             --disable-avdevice --disable-avfilter --disable-doc
@@ -114,7 +111,6 @@ else()
             --enable-avformat --enable-avcodec --enable-network --enable-swscale
             # Individual component options (per "configure --help")
             --disable-everything
-            --enable-ffmpeg --enable-ffplay --enable-ffprobe --enable-ffserver
             --enable-vda --disable-iconv --disable-libopencv --enable-libx264 --enable-libvpx
             --enable-gpl --enable-nonfree
             --enable-encoder=libx264,mjpeg,libvpx_vp8,libvpx_vp9
