@@ -1,14 +1,14 @@
-prefix=/home/keith/prismffmpeg/build/ffmpeg/root
+prefix=/home/keith/prismffmpeg/install/linux
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include
 
 Name: libavformat
 Description: FFmpeg container format library
-Version: 56.15.102
-Requires: libavcodec >= 56.13.100, libavutil >= 54.15.100
-Requires.private: 
+Version: 57.26.100
+Requires: 
+Requires.private: libavcodec >= 57.24.105, libavutil >= 55.18.100
 Conflicts:
-Libs: -L${libdir}  -lavformat -lxcb -lxcb-shm -lxcb -lX11 -lx264 -lpthread -lvpx -lvpx -lm -lbz2 -lz -pthread -lrt
-Libs.private: 
+Libs: -L${libdir}  -lavformat 
+Libs.private: -lxcb -lxcb-shm -lxcb -lX11 -lx264 -lvpx -lm -lbz2 -lz -pthread -lrt
 Cflags: -I${includedir}

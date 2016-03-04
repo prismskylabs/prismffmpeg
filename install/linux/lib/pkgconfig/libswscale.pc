@@ -1,14 +1,14 @@
-prefix=/home/keith/prismffmpeg/build/ffmpeg/root
+prefix=/home/keith/prismffmpeg/install/linux
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include
 
 Name: libswscale
 Description: FFmpeg image rescaling library
-Version: 3.1.101
-Requires: libavutil >= 54.15.100
-Requires.private: 
+Version: 4.0.100
+Requires: 
+Requires.private: libavutil >= 55.18.100
 Conflicts:
-Libs: -L${libdir}  -lswscale -lm
-Libs.private: 
+Libs: -L${libdir}  -lswscale 
+Libs.private: -lm
 Cflags: -I${includedir}
